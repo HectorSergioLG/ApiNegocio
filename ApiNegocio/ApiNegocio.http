@@ -1,0 +1,6 @@
+@ApiNegocio_HostAddress = http://localhost:5074
+
+GET {{ApiNegocio_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

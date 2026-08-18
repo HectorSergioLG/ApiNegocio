@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="ApiNegocio/ApiNegocio.csproj" />
+  <Project Path="Aplication/Aplication.csproj" />
+  <Project Path="Domain/Domain.csproj" />
+  <Project Path="Infrastructure/Infrastructure.csproj" />
+</Solution>
