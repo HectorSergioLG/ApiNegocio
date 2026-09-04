@@ -22,7 +22,7 @@ namespace Infrastructure.Persistence.Configuration.Catalogs
             builder.Property(c => c.SecondLastName).IsRequired().HasMaxLength(150);
             builder.Property(c => c.Email).IsRequired().HasMaxLength(150);
             builder.Property(c => c.PhoneNumber).HasConversion(telfofono => telfofono.Value, value  => PhoneNumber.Create(value)!).HasMaxLength(10);
-            builder.Property(c => c.Active);
+            builder.Property(c => c.IsActive);
         }
     }
 }

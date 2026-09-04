@@ -18,7 +18,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="NewFolder\" />
+    <Folder Include="Security\UserModule\Create\" />
+    <Folder Include="Security\UserModule\Delete\" />
+    <Folder Include="Security\UserModule\GetAll\" />
+    <Folder Include="Security\UserModule\GetById\" />
+    <Folder Include="Security\UserModule\Update\" />
   </ItemGroup>
 
 </Project>

@@ -1,9 +1,8 @@
-﻿
-using Aplication.CustomersAplication.Create;
-using Aplication.CustomersAplication.Delete;
-using Aplication.CustomersAplication.GetAll;
-using Aplication.CustomersAplication.GetById;
-using Aplication.CustomersAplication.Update;
+﻿using Aplication.Identity.Catalogos.Customers.Create;
+using Aplication.Identity.Catalogos.Customers.Delete;
+using Aplication.Identity.Catalogos.Customers.GetAll;
+using Aplication.Identity.Catalogos.Customers.GetById;
+using Aplication.Identity.Catalogos.Customers.Update;
 using ErrorOr;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -23,7 +22,7 @@ namespace ApiNegocio.Controllers
 
         [HttpGet]
         public async Task<IActionResult> GetAll() { 
-            var clientesResult = await _mediator.Send(new GetAllCustomerQuery());
+            var clientesResult = await _mediator.Send(new GetAllCustomersQuery());
             return clientesResult.Match(
                 clientes => Ok(clientes),
                 errors => Problem(errors)

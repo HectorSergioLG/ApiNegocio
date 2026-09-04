@@ -1,5 +1,6 @@
 ﻿using Aplication.Data;
 using Domain.Entities.Catalogs.Customer;
+using Domain.Entities.Security.Users;
 using Domain.Primitives;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -23,6 +24,8 @@ namespace Infrastructure.Persistence
             _publisher = publisher ?? throw new ArgumentNullException(nameof(publisher));
         }
         public DbSet<Customer> Customers { get; set; }
+        public DbSet<User> Users { get; set; }
+       
 
         /// <summary>
         /// Guarda los cambios realizados en el contexto de la base de datos y publica los eventos de dominio asociados a las entidades.

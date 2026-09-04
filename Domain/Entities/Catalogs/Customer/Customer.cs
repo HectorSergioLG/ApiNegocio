@@ -11,7 +11,7 @@ namespace Domain.Entities.Catalogs.Customer
        
      
 
-        public Customer(CustomerId id, string name, string fistLastName, string secondLastName, Email email, PhoneNumber phoneNumber, bool active)
+        public Customer(CustomerId id, string name, string fistLastName, string secondLastName, Email email, PhoneNumber phoneNumber, bool isActive)
         {
             Id = id;
             Name = name;
@@ -19,13 +19,13 @@ namespace Domain.Entities.Catalogs.Customer
             SecondLastName = secondLastName;
             Email = email;
             PhoneNumber = phoneNumber;
-            Active = active;
+            IsActive = isActive;
         }
 
        
-        public static Customer UpdateCustomer(Guid id, string name, string fistLastName, string secondLastName, Email email, PhoneNumber phoneNumber, bool active)
+        public static Customer UpdateCustomer(Guid id, string name, string fistLastName, string secondLastName, Email email, PhoneNumber phoneNumber, bool isActive)
         {
-            return new Customer(new CustomerId(id), name, fistLastName, secondLastName, email, phoneNumber, active);
+            return new Customer(new CustomerId(id), name, fistLastName, secondLastName, email, phoneNumber, isActive);
         }
 
         
@@ -60,7 +60,17 @@ namespace Domain.Entities.Catalogs.Customer
         /// <summary>
         /// Obtiene un valor que indica si el Customer está activo.
         /// </summary>
-        public bool Active { get; private set; }
+        public bool IsActive { get; private set; }
+
+        public void Disable()
+        {
+            IsActive = false;
+        }
+
+        public void Enable()
+        {
+            IsActive = true;
+        }
 
 
     }
