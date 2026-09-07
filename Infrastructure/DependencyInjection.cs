@@ -1,8 +1,12 @@
 ﻿using Aplication.Data;
 using Domain.Entities.Catalogs.Customer;
+using Domain.Entities.Security.Permissions;
+using Domain.Entities.Security.Roles;
+using Domain.Entities.Security.Users;
 using Domain.Primitives;
 using Infrastructure.Persistence;
 using Infrastructure.Persistence.Repositories.Catalogs;
+using Infrastructure.Persistence.Repositories.Security;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -40,6 +44,9 @@ namespace Infrastructure
             services.AddScoped<IApplicationDbContext>(sp => sp.GetRequiredService<ApplicationDbContext>());
             services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<ApplicationDbContext>());
             services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<IUserRepository, Infrastructure.Persistence.Repositories.Security.UserRepository>();
+            services.AddScoped<IRoleRepository, RoleRepository>();
+            services.AddScoped<IPermissionRepository, PermissionRepository>();
             return services;
         }
     }

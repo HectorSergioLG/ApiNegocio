@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Security\**" />
+    <EmbeddedResource Remove="Security\**" />
+    <None Remove="Security\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="ErrorOr" Version="2.1.1" />
     <PackageReference Include="FluentValidation" Version="12.1.1" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.1" />
@@ -18,11 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Security\UserModule\Create\" />
-    <Folder Include="Security\UserModule\Delete\" />
-    <Folder Include="Security\UserModule\GetAll\" />
-    <Folder Include="Security\UserModule\GetById\" />
-    <Folder Include="Security\UserModule\Update\" />
+    <Folder Include="Identity\Catalogos\Products\UnitsMeasures\Common\" />
   </ItemGroup>
 
 </Project>

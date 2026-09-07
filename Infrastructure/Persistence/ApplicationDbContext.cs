@@ -1,5 +1,7 @@
 ﻿using Aplication.Data;
 using Domain.Entities.Catalogs.Customer;
+using Domain.Entities.Security.Permissions;
+using Domain.Entities.Security.Roles;
 using Domain.Entities.Security.Users;
 using Domain.Primitives;
 using MediatR;
@@ -25,7 +27,8 @@ namespace Infrastructure.Persistence
         }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<User> Users { get; set; }
-       
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<Permission> Permissions { get; set; }
 
         /// <summary>
         /// Guarda los cambios realizados en el contexto de la base de datos y publica los eventos de dominio asociados a las entidades.

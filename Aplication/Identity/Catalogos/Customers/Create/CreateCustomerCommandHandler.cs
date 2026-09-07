@@ -1,7 +1,6 @@
 ﻿using Domain.Entities.Catalogs.Customer;
 using Domain.Primitives;
 using Domain.ValueObjects;
-
 using ErrorOr;
 using MediatR;
 

@@ -25,7 +25,7 @@ namespace Aplication.Identity.Catalogos.Customers.Delete
              
             _clienteRepository.Delete(customr);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
-            return MediatR.Unit.Value;
+            return Unit.Value;
         }
 
     }

@@ -1,4 +1,5 @@
 ﻿
+using Domain.Entities.Security.Roles;
 using Domain.Entities.Security.Users;
 using Domain.ValueObjects;
 using Microsoft.EntityFrameworkCore;
@@ -21,7 +22,22 @@ namespace Infrastructure.Persistence.Configuration.Security
             builder.Property(u => u.UserName).IsRequired().HasMaxLength(150);
             builder.Property(U => U.Password).HasConversion(contrasenia => contrasenia.Value, value => Password.Create(value));
             builder.Property(u => u.RegistrationDate);
-            builder.Property(u => u.IsActive); 
+            builder.Property(u => u.IsActive);
+
+            // Relación many-to-many con Role
+            builder.HasMany(u => u.Roles)
+                .WithMany()
+                .UsingEntity(
+                    "UserRole",
+                    l => l.HasOne(typeof(Role))
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade),
+                    r => r.HasOne(typeof(User))
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade),
+                    j => j.HasKey("UserId", "RoleId"));
         }
     }
 }
