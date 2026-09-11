@@ -1,10 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using FluentValidation;
 
 namespace Aplication.Identity.Catalogos.Products.UnitsMeasures.Delete
 {
-    internal class DeleteUnitMeasureCommandValidator
+    public class DeleteUnitMeasureCommandValidator : AbstractValidator<DeleteUnitMeasureCommand>
     {
+        public DeleteUnitMeasureCommandValidator()
+        {
+            RuleFor(x => x.Id).NotEmpty();
+        }
     }
 }

@@ -27,16 +27,9 @@ namespace Infrastructure.Persistence.Configuration.Security
             // Relación many-to-many con Role
             builder.HasMany(u => u.Roles)
                 .WithMany()
-                .UsingEntity(
-                    "UserRole",
-                    l => l.HasOne(typeof(Role))
-                        .WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade),
-                    r => r.HasOne(typeof(User))
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade),
+                .UsingEntity("UserRole",
+                    l => l.HasOne(typeof(Role)).WithMany().HasForeignKey("RoleId").OnDelete(DeleteBehavior.Cascade),
+                    r => r.HasOne(typeof(User)).WithMany().HasForeignKey("UserId").OnDelete(DeleteBehavior.Cascade),
                     j => j.HasKey("UserId", "RoleId"));
         }
     }

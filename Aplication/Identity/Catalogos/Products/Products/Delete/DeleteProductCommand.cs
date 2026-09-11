@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using ErrorOr;
+using MediatR;
 
 namespace Aplication.Identity.Catalogos.Products.Products.Delete
 {
-    internal class DeleteProductCommand
-    {
-    }
+    public record DeleteProductCommand(Guid Id) : IRequest<ErrorOr<Unit>>;
 }

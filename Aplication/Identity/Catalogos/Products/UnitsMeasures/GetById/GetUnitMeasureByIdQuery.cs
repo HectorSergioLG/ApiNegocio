@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Aplication.Identity.Catalogos.Products.UnitsMeasures.Common;
+using ErrorOr;
+using MediatR;
 
 namespace Aplication.Identity.Catalogos.Products.UnitsMeasures.GetById
 {
-    internal class GetUnitMeasureByIdQuery
-    {
-    }
+    public record GetUnitMeasureByIdQuery(Guid Id): IRequest<ErrorOr<UnitMeasureResponse>>;
 }

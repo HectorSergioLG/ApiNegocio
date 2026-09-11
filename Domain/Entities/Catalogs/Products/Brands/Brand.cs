@@ -15,6 +15,10 @@ namespace Domain.Entities.Catalogs.Products.Brands
             IsActive = isActive;
         }
 
+        public Brand()
+        {
+        }
+
         public static Brand UpdateBrand(Guid id, string name, string webSite, bool isActive)
         {
             return new Brand(new BrandId(id), name, webSite, isActive);

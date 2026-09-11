@@ -25,7 +25,7 @@ namespace Aplication.Identity.Security.Users.Delete
 
             _userRepository.Delete(customer);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
-            return MediatR.Unit.Value;
+            return Unit.Value;
         }
     }
 }

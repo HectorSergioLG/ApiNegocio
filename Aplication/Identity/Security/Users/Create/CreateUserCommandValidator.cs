@@ -1,11 +1,4 @@
-﻿using Aplication.Identity.Catalogos.Customers.Create;
-using ErrorOr;
-using FluentValidation;
-using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Text;
+﻿using FluentValidation;
 
 namespace Aplication.Identity.Security.Users.Create
 {

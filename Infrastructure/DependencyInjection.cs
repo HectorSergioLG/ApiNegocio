@@ -1,5 +1,8 @@
 ﻿using Aplication.Data;
 using Domain.Entities.Catalogs.Customer;
+using Domain.Entities.Catalogs.Products.Brands;
+using Domain.Entities.Catalogs.Products.Products;
+using Domain.Entities.Catalogs.Products.UnitsMesures;
 using Domain.Entities.Security.Permissions;
 using Domain.Entities.Security.Roles;
 using Domain.Entities.Security.Users;
@@ -44,9 +47,12 @@ namespace Infrastructure
             services.AddScoped<IApplicationDbContext>(sp => sp.GetRequiredService<ApplicationDbContext>());
             services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<ApplicationDbContext>());
             services.AddScoped<ICustomerRepository, CustomerRepository>();
-            services.AddScoped<IUserRepository, Infrastructure.Persistence.Repositories.Security.UserRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IRoleRepository, RoleRepository>();
             services.AddScoped<IPermissionRepository, PermissionRepository>();
+            services.AddScoped<IBrandRepository, BrandRepository>();
+            services.AddScoped<IUnitMeasureRepository, UnitMeasureRepository>();
+            services.AddScoped<IProductRepository, ProductRepository>();
             return services;
         }
     }

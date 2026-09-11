@@ -20,7 +20,7 @@ namespace Aplication.Identity.Catalogos.Products.Brands.Delete
         {
             if (await _brandRepository.GetById(new BrandId(request.Id)) is not Brand brand)
             {
-                return Error.NotFound("Brand", "Brand not found");
+                return Error.NotFound("Brand.", "Marca no encontrada");
             }
 
             _brandRepository.Delete(brand);

@@ -41,7 +41,7 @@ namespace Infrastructure.Persistence.Repositories.Catalogs
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<Customer?> GetById(CustomerId id) => await _context.Customers.SingleOrDefaultAsync(c => c.Id == id);
+        public Task<Customer?> GetById(CustomerId id) => _context.Customers.SingleOrDefaultAsync(c => c.Id == id);
 
         /// <summary>
         /// Obtiene todos los Customers del repositorio.

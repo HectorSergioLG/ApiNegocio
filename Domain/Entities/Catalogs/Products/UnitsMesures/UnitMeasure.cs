@@ -1,12 +1,13 @@
 ﻿using Domain.Primitives;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Domain.Entities.Catalogs.Products.UnitsMesures
 {
     public class UnitMeasure : AggregateRoot
     {
+        public UnitMeasure()
+        {
+        }
+
         public UnitMeasure(UnitMeasureId id, string name, string abbreviation, string description)
         {
             Id = id;
@@ -20,11 +21,9 @@ namespace Domain.Entities.Catalogs.Products.UnitsMesures
         public string Abbreviation { get; private set; } = string.Empty;
         public string Description { get; private set; }
 
-        public UnitMeasure Update(Guid id,string name, string abbreviation, string description) 
+        public static UnitMeasure UpdateUnitMeasure(Guid id,string name, string abbreviation, string description) 
         {
             return new UnitMeasure(new UnitMeasureId(id), name, abbreviation, description);
         }
-
-
     }
 }

@@ -1,5 +1,4 @@
 ﻿using Aplication.Identity.Security.Users.Common;
-using Aplication.Identity.Security.Users.GetAll;
 using Domain.Entities.Security.Users;
 using ErrorOr;
 using MediatR;

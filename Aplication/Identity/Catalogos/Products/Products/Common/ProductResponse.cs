@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Aplication.Identity.Catalogos.Products.Products.Common
+﻿namespace Aplication.Identity.Catalogos.Products.Products.Common
 {
     public record ProductResponse(
         Guid Id,
         string Name,
+        int IdUnitMeasure,
+        int idBrand,
         string Description,
         decimal Price,
-        int Stock
+        int Stock,
+        bool IsActive
     );
 }

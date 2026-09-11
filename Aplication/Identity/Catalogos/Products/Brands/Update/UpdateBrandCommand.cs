@@ -9,5 +9,5 @@ namespace Aplication.Identity.Catalogos.Products.Brands.Update
         string Name, 
         string WebSite, 
         bool IsActive
-       ) : IRequest<ErrorOr<BrandResponse>>;
+       ) : IRequest<ErrorOr<Unit>>;
 }

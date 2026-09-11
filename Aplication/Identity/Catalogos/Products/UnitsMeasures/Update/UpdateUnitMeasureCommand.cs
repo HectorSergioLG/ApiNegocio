@@ -1,10 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using ErrorOr;
+using MediatR;
 
 namespace Aplication.Identity.Catalogos.Products.UnitsMeasures.Update
 {
-    internal class UpdateUnitMeasureCommand
-    {
-    }
+    public record UpdateUnitMeasureCommand
+    (
+        Guid Id,
+        string Name,
+        string Abbreviation,
+        string Description
+    ) : IRequest<ErrorOr<Unit>>;
 }

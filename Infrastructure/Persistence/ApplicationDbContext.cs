@@ -1,5 +1,8 @@
 ﻿using Aplication.Data;
 using Domain.Entities.Catalogs.Customer;
+using Domain.Entities.Catalogs.Products.Brands;
+using Domain.Entities.Catalogs.Products.Products;
+using Domain.Entities.Catalogs.Products.UnitsMesures;
 using Domain.Entities.Security.Permissions;
 using Domain.Entities.Security.Roles;
 using Domain.Entities.Security.Users;
@@ -29,6 +32,10 @@ namespace Infrastructure.Persistence
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<Permission> Permissions { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Brand> Brands { get; set; }
+        public DbSet<UnitMeasure> UnitMeasures { get; set; }
+
 
         /// <summary>
         /// Guarda los cambios realizados en el contexto de la base de datos y publica los eventos de dominio asociados a las entidades.
