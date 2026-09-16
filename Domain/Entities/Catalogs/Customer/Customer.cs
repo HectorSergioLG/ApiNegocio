@@ -8,9 +8,6 @@ namespace Domain.Entities.Catalogs.Customer
     /// </summary>
     public class Customer:AggregateRoot
     {
-       
-     
-
         public Customer(CustomerId id, string name, string fistLastName, string secondLastName, Email email, PhoneNumber phoneNumber, bool isActive)
         {
             Id = id;
@@ -27,10 +24,6 @@ namespace Domain.Entities.Catalogs.Customer
         {
             return new Customer(new CustomerId(id), name, fistLastName, secondLastName, email, phoneNumber, isActive);
         }
-
-        
-       
-
 
         /// <summary>
         /// Obtiene el identificador del Customer.
@@ -71,7 +64,5 @@ namespace Domain.Entities.Catalogs.Customer
         {
             IsActive = true;
         }
-
-
     }
 }

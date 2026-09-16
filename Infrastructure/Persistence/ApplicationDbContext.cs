@@ -1,4 +1,5 @@
 ﻿using Aplication.Data;
+using Domain.Entities.Catalogs.Companies;
 using Domain.Entities.Catalogs.Customer;
 using Domain.Entities.Catalogs.Products.Brands;
 using Domain.Entities.Catalogs.Products.Products;
@@ -35,6 +36,7 @@ namespace Infrastructure.Persistence
         public DbSet<Product> Products { get; set; }
         public DbSet<Brand> Brands { get; set; }
         public DbSet<UnitMeasure> UnitMeasures { get; set; }
+        public DbSet<Company> Companies { get; set; }
 
 
         /// <summary>
