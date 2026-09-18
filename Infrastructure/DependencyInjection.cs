@@ -3,12 +3,14 @@ using Domain.Entities.Catalogs.Customer;
 using Domain.Entities.Catalogs.Products.Brands;
 using Domain.Entities.Catalogs.Products.Products;
 using Domain.Entities.Catalogs.Products.UnitsMesures;
+using Domain.Entities.Purchasing.PurchaseOrders;
 using Domain.Entities.Security.Permissions;
 using Domain.Entities.Security.Roles;
 using Domain.Entities.Security.Users;
 using Domain.Primitives;
 using Infrastructure.Persistence;
 using Infrastructure.Persistence.Repositories.Catalogs;
+using Infrastructure.Persistence.Repositories.Purchasing;
 using Infrastructure.Persistence.Repositories.Security;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -53,6 +55,7 @@ namespace Infrastructure
             services.AddScoped<IBrandRepository, BrandRepository>();
             services.AddScoped<IUnitMeasureRepository, UnitMeasureRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IPurchaseOrderRepository, PurchaseOrderRepository>();
             return services;
         }
     }

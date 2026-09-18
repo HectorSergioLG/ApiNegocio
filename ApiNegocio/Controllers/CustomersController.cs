@@ -11,11 +11,11 @@ using Microsoft.AspNetCore.Mvc;
 namespace ApiNegocio.Controllers
 {
     [Route("Clientes")]
-    public class ClientesController : ApiController
+    public class CustomersController : ApiController
     {
         private readonly ISender _mediator;
 
-        public ClientesController(ISender mediator)
+        public CustomersController(ISender mediator)
         {
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
