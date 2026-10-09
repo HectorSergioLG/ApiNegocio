@@ -36,7 +36,7 @@ namespace Domain.Entities.Purchasing.PurchaseOrders
             _purchaseOrderDetails.Add(detail);
         }
 
-        public void addDetails(ProductId productId, decimal quantity, decimal unitPrice)
+        public void AddDetail(ProductId productId, decimal quantity, decimal unitPrice)
         {
             var detail = new PurchaseOrderDetail( 
                 Id,
@@ -51,6 +51,23 @@ namespace Domain.Entities.Purchasing.PurchaseOrders
             Status = newStatus;
         }
 
+        // Método para actualizar datos de cabecera
+        public void UpdateHeader(CompanyId companyId, string orderNumber, DateTime orderDate)
+        {
+            CompanyId = companyId;
+            OrderNumber = orderNumber;
+            OrderDate = orderDate;
+        }
+
+        // Método para reemplazar los detalles
+        public void UpdateDetails(IEnumerable<(ProductId ProductId, decimal Quantity, decimal UnitPrice)> items)
+        {
+            _purchaseOrderDetails.Clear();
+            foreach (var item in items)
+            {
+                AddDetail(item.ProductId, item.Quantity, item.UnitPrice);
+            }
+        }
 
     }
 }

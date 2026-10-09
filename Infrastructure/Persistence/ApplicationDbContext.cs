@@ -5,6 +5,7 @@ using Domain.Entities.Catalogs.Products.Brands;
 using Domain.Entities.Catalogs.Products.Products;
 using Domain.Entities.Catalogs.Products.UnitsMesures;
 using Domain.Entities.Purchasing.PurchaseOrders;
+using Domain.Entities.Purchasing.PurchaseReceipts;
 using Domain.Entities.Security.Permissions;
 using Domain.Entities.Security.Roles;
 using Domain.Entities.Security.Users;
@@ -40,6 +41,8 @@ namespace Infrastructure.Persistence
         public DbSet<Company> Companies { get; set; }
         public DbSet<PurchaseOrder> PurchaseOrders { get; set; }
         public DbSet<PurchaseOrderDetail> PurchaseOrderDetails { get; set; }
+        public DbSet<PurchaseReceipt> PurchaseReceipts { get; set; }
+        public DbSet<PurchaseReceiptDetail> PurchaseReceiptDetails { get; set; }
 
 
         /// <summary>

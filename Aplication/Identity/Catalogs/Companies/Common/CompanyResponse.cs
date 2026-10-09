@@ -6,8 +6,11 @@ using System.Text;
 namespace Aplication.Identity.Catalogos.Companies.Common
 {
     public record CompanyResponse(
-        CompanyId Id,
-        string Name, 
+        Guid Id,
+        string Name,
+        string TradeName,
+        string Email,
+        string PhoneNumber,
         bool IsActive
        );
     

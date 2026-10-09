@@ -3,9 +3,9 @@ using Domain.Entities.Catalogs.Companies;
 using ErrorOr;
 using MediatR;
 
-namespace Aplication.Identity.Catalogos.Companies.GetAll
+namespace Aplication.Identity.Catalogs.Companies.GetAll
 {
-    internal class GetAllCompaniesQueryHandler : IRequestHandler<GetAllCompaniesQuery, ErrorOr<IReadOnlyList<CompanyResponse>>>
+    public class GetAllCompaniesQueryHandler : IRequestHandler<GetAllCompaniesQuery, ErrorOr<IReadOnlyList<CompanyResponse>>>
     {
         private readonly ICompanyRepository _companyRepository;
 
@@ -18,8 +18,11 @@ namespace Aplication.Identity.Catalogos.Companies.GetAll
         {
             IReadOnlyList<Company> companies = await _companyRepository.GetAll();
             return companies.Select(company => new CompanyResponse(
-                 company.Id,
+                 company.Id.Value,
                  company.Name,
+                 company.TradeName,
+                 company.Email.Value,
+                 company.PhoneNumber.Value,
                  company.IsActive
              )).ToList();
         }

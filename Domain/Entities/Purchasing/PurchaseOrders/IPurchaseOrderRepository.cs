@@ -9,7 +9,7 @@ namespace Domain.Entities.Purchasing.PurchaseOrders
     {
         Task<List<PurchaseOrder>> GetAll();
         Task<PurchaseOrder?> GetById(PurchaseOrderId id);
-        Task<bool> Exists(PurchaseOrderId id);
+        Task<bool> ExistsByOrderNumber(string orderNumber);
         void Add(PurchaseOrder purchaseOrder);
         void Delete(PurchaseOrder purchaseOrder);
         void Update(PurchaseOrder purchaseOrder);

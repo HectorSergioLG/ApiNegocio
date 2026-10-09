@@ -1,9 +1,11 @@
 ﻿using Aplication.Data;
+using Domain.Entities.Catalogs.Companies;
 using Domain.Entities.Catalogs.Customer;
 using Domain.Entities.Catalogs.Products.Brands;
 using Domain.Entities.Catalogs.Products.Products;
 using Domain.Entities.Catalogs.Products.UnitsMesures;
 using Domain.Entities.Purchasing.PurchaseOrders;
+using Domain.Entities.Purchasing.PurchaseReceipts;
 using Domain.Entities.Security.Permissions;
 using Domain.Entities.Security.Roles;
 using Domain.Entities.Security.Users;
@@ -49,6 +51,7 @@ namespace Infrastructure
             services.AddScoped<IApplicationDbContext>(sp => sp.GetRequiredService<ApplicationDbContext>());
             services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<ApplicationDbContext>());
             services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<ICompanyRepository, CompanyRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IRoleRepository, RoleRepository>();
             services.AddScoped<IPermissionRepository, PermissionRepository>();
@@ -56,6 +59,7 @@ namespace Infrastructure
             services.AddScoped<IUnitMeasureRepository, UnitMeasureRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IPurchaseOrderRepository, PurchaseOrderRepository>();
+            services.AddScoped<IPurchaseReceiptRepository, PurchaseReceiptRepository>();
             return services;
         }
     }

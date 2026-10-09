@@ -18,6 +18,8 @@ namespace Aplication.Identity.Catalogos.Products.Products.GetAll
             return Products.Select(product => new ProductResponse(
                product.Id.Value,
                product.Name,
+               product.UnitMeasure.Id.Value,
+               product.Brand.Id.Value,
                product.Description,
                product.Price,
                product.Stock,

@@ -40,7 +40,8 @@ namespace Aplication.Identity.Catalogos.Products.Products.Create
                 new(),
                 request.Description,
                 request.Price,
-                request.Stock
+                request.Stock,
+                true
             );
 
             _productRepository.Add(product);

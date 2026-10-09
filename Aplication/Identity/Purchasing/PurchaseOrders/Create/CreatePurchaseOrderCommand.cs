@@ -4,14 +4,14 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Aplication.Identity.PurchaseOrders.Create
+namespace Aplication.Identity.Purchasing.PurchaseOrders.Create
 {
     public sealed record PurchaseOrderDetailDto(
         Guid ProductId,
         decimal Quantity,
         decimal UnitPrice
     );
-    public sealed record CreatePurchaseOrdersCommand(
+    public sealed record CreatePurchaseOrderCommand(
         Guid CompanyId,
         string OrderNumber,
         DateTime OrderDate,

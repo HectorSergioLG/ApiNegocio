@@ -9,8 +9,7 @@ namespace Domain.Entities.Catalogs.Companies
     {
        
         Task<List<Company>> GetAll();
-
-       /*
+        
         Task<Company?> GetById(CompanyId id);
 
         Task<bool> Exists(CompanyId id);
@@ -20,6 +19,6 @@ namespace Domain.Entities.Catalogs.Companies
         void Delete(Company Company);
 
         void Update(Company Company);
-       */
+       
     }
 }

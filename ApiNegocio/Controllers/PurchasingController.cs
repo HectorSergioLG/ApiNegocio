@@ -1,0 +1,89 @@
+﻿using Aplication.Identity.Purchasing.PurchaseOrders.Create;
+using Aplication.Identity.Purchasing.PurchaseOrders.Delete;
+using Aplication.Identity.Purchasing.PurchaseOrders.GetAll;
+using Aplication.Identity.Purchasing.PurchaseOrders.GetById;
+using Aplication.Identity.Purchasing.PurchaseOrders.Update;
+using Aplication.Identity.Purchasing.PurchaseReceipts.Create;
+using ErrorOr;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
+
+namespace ApiNegocio.Controllers
+{
+    [Route("Purchasing")]
+    public class PurchasingController : ApiController
+    {
+        private readonly ISender _mediator;
+
+        public PurchasingController(ISender mediator)
+        {
+            _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
+        }
+
+        // --- PURCHASE ORDERS ---
+
+        [HttpPost("orders")]
+        public async Task<IActionResult> CreateOrder([FromBody] CreatePurchaseOrderCommand command)
+        {
+            var result = await _mediator.Send(command);
+            return result.Match(
+                orderId => CreatedAtAction(nameof(GetOrderById), new { id = orderId }, orderId),
+                errors => Problem(errors));
+        }
+
+        [HttpGet("orders/{id:guid}")]
+        public async Task<IActionResult> GetOrderById(Guid id)
+        {
+            var result = await _mediator.Send(new GetPurchaseOrderByIdQuery(id));
+            return result.Match(
+                order => Ok(order),
+                errors => Problem(errors));
+        }
+
+        [HttpGet("orders")]
+        public async Task<IActionResult> GetAllOrders()
+        {
+            var result = await _mediator.Send(new GetAllPurchaseOrdersQuery());
+            return result.Match(
+                orders => Ok(orders),
+                errors => Problem(errors));
+        }
+
+        [HttpPut("orders/{id:guid}")]
+        public async Task<IActionResult> UpdateOrder(Guid id, [FromBody] UpdatePurchaseOrderCommand command)
+        {
+            if (id != command.Id)
+            {
+                return Problem(new List<Error>
+            {
+                Error.Validation("PurchaseOrder.IdMismatch", "El identificador de la ruta no coincide con el cuerpo.")
+            });
+            }
+
+            var result = await _mediator.Send(command);
+            return result.Match(
+                _ => NoContent(),
+                errors => Problem(errors));
+        }
+
+        [HttpDelete("orders/{id:guid}")]
+        public async Task<IActionResult> DeleteOrder(Guid id)
+        {
+            var result = await _mediator.Send(new DeletePurchaseOrderCommand(id));
+            return result.Match(
+                _ => NoContent(),
+                errors => Problem(errors));
+        }
+
+        // --- PURCHASE RECEIPTS ---
+
+        [HttpPost("receipts")]
+        public async Task<IActionResult> CreateReceipt([FromBody] CreatePurchaseReceiptCommand command)
+        {
+            var result = await _mediator.Send(command);
+            return result.Match(
+                receiptId => Ok(new { ReceiptId = receiptId }),
+                errors => Problem(errors));
+        }
+    }
+}

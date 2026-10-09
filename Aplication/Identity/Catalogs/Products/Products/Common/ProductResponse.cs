@@ -3,8 +3,8 @@
     public record ProductResponse(
         Guid Id,
         string Name,
-        int IdUnitMeasure,
-        int idBrand,
+        Guid IdUnitMeasure,
+        Guid idBrand,
         string Description,
         decimal Price,
         int Stock,

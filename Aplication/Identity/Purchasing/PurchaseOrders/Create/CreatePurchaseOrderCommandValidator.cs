@@ -1,10 +1,10 @@
 ﻿using FluentValidation;
 
-namespace Aplication.Identity.PurchaseOrders.Create
+namespace Aplication.Identity.Purchasing.PurchaseOrders.Create
 {
-    public sealed class CreatePurchaseOrdersCommandValidator : AbstractValidator<CreatePurchaseOrdersCommand>
+    public sealed class CreatePurchaseOrderCommandValidator : AbstractValidator<CreatePurchaseOrderCommand>
     {
-        public CreatePurchaseOrdersCommandValidator()
+        public CreatePurchaseOrderCommandValidator()
         {
             RuleFor(x => x.CompanyId).NotEmpty().WithMessage("La empresa es requerida.");
             RuleFor(x => x.OrderNumber).NotEmpty().MaximumLength(50).WithMessage("El número de orden es requerido y no debe exceder 50 caracteres.");

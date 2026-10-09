@@ -18,5 +18,4 @@ namespace Infrastructure.Persistence.Repositories.Catalogs
 
         public void Update(Product product) => _context.Products.Update(product);
         }
-    }
 }
