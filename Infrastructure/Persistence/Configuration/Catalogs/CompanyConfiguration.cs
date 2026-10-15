@@ -2,9 +2,6 @@
 using Domain.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Infrastructure.Persistence.Configuration.Catalogs
 {
@@ -16,8 +13,8 @@ namespace Infrastructure.Persistence.Configuration.Catalogs
 
             // Primary Key & Conversion de Strongly-Typed ID
             builder.HasKey(c => c.Id);
-            builder.Property(c => c.Id)
-                .HasConversion(id => id.Value, value => new CompanyId(value));
+            builder.Property(c => c.Id).HasConversion(id => id.Value, id => new CompanyId(id));
+            
 
             // Propiedades básicas
             builder.Property(c => c.Name)

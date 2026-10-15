@@ -9,6 +9,12 @@ namespace Infrastructure.Persistence.Repositories.Catalogs
     public class CustomerRepository : ICustomerRepository
     {
         private readonly ApplicationDbContext _context;
+
+        public CustomerRepository(ApplicationDbContext context)
+        {
+            _context = context ?? throw new ArgumentNullException(nameof(context));
+        }
+
         /// <summary>
         /// Inicializa una nueva instancia de la clase <see cref="CustomerRepository"/>.
         /// </summary>

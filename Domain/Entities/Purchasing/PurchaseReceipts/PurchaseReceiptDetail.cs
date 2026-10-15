@@ -12,12 +12,7 @@ namespace Domain.Entities.Purchasing.PurchaseReceipts
 
         public PurchaseReceiptDetail() { }
 
-        public PurchaseReceiptDetail(
-            PurchaseReceiptDetailId id,
-            PurchaseReceiptId purchaseReceiptId,
-            ProductId productId,
-            decimal receivedQuantity,
-            decimal unitCost)
+        public PurchaseReceiptDetail(PurchaseReceiptDetailId id,PurchaseReceiptId purchaseReceiptId,ProductId productId,decimal receivedQuantity,decimal unitCost)
         {
             Id = id;
             PurchaseReceiptId = purchaseReceiptId;

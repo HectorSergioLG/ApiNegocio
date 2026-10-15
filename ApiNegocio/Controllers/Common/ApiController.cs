@@ -4,7 +4,7 @@ using ApiNegocio.Common.Http;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 
-namespace ApiNegocio.Controllers
+namespace ApiNegocio.Controllers.Common
 {
     [ApiController]
     public class ApiController : ControllerBase

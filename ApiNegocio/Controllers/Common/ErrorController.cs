@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace ApiNegocio.Controllers
+namespace ApiNegocio.Controllers.Common
 {
     public class ErrorController : ControllerBase
     {

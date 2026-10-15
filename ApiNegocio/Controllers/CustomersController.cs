@@ -1,4 +1,5 @@
-﻿using Aplication.Identity.Catalogos.Customers.Create;
+﻿using ApiNegocio.Controllers.Common;
+using Aplication.Identity.Catalogos.Customers.Create;
 using Aplication.Identity.Catalogos.Customers.Delete;
 using Aplication.Identity.Catalogos.Customers.GetAll;
 using Aplication.Identity.Catalogos.Customers.GetById;
@@ -29,7 +30,7 @@ namespace ApiNegocio.Controllers
             );
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:guid}")]
         public async Task<IActionResult> GetById(Guid id)
         {
             var clienteResult = await _mediator.Send(new GetCustomerByIdQuery(id));
@@ -49,7 +50,7 @@ namespace ApiNegocio.Controllers
             );
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("{id:guid}")]
         public async Task<IActionResult> Update(Guid id, [FromBody] UpdateCustomerCommand command)
         {
             if (command.Id!= id)
@@ -69,7 +70,7 @@ namespace ApiNegocio.Controllers
 
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{id:guid}")]
         public async Task<IActionResult> Delete(Guid id)
         {
             var result = await _mediator.Send(new DeleteCustomerCommand(id));

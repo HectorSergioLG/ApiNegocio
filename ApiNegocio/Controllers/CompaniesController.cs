@@ -6,10 +6,11 @@ using Aplication.Identity.Catalogs.Companies.Delete;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using ErrorOr;
+using ApiNegocio.Controllers.Common;
 
 namespace ApiNegocio.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("Empresas")]
     [ApiController]
     public class CompaniesController : ApiController
     {
@@ -36,7 +37,7 @@ namespace ApiNegocio.Controllers
         /// <summary>
         /// Obtiene una empresa por su ID.
         /// </summary>
-        [HttpGet("{id:guid}")]
+        [HttpGet("/{id:guid}")]
         public async Task<IActionResult> GetById(Guid id, CancellationToken cancellationToken)
         {
             var result = await _mediator.Send(new GetCompanyByIdQuery(id), cancellationToken);

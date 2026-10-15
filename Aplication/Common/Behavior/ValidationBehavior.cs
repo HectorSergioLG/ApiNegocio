@@ -19,7 +19,7 @@ namespace Aplication.Common.Behavior
         /// Constructor de la clase ValidationBehavior
         /// </summary>
         /// <param name="validator"></param>
-        public ValidationBehavior(IValidator<TRequest> validator)
+        public ValidationBehavior(IValidator<TRequest>? validator=null)
         {
             _validator = validator;
         }

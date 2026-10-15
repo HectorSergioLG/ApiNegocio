@@ -6,9 +6,6 @@ using Domain.Entities.Purchasing.PurchaseReceipts;
 using Domain.Primitives;
 using ErrorOr;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Aplication.Identity.Purchasing.PurchaseReceipts.Create
 {
@@ -35,7 +32,7 @@ namespace Aplication.Identity.Purchasing.PurchaseReceipts.Create
             }
 
             // 2. Validar que no esté ya recibida ni cancelada
-            if (order.Status == PurchaseOrderStatus.Approved || order.Status == PurchaseOrderStatus.Cancelled)
+            if (order.Status == PurchaseOrderStatus.PartiallyReceived || order.Status == PurchaseOrderStatus.Cancelled)
             {
                 return Error.Conflict("PurchaseOrder.InvalidStatus", $"No se puede recibir una orden en estado {order.Status}.");
             }
@@ -61,8 +58,8 @@ namespace Aplication.Identity.Purchasing.PurchaseReceipts.Create
                 receipt.AddDetail(new ProductId(item.ProductId), item.Quantity, item.UnitPrice);
             }
 
-            // 5. Actualizar estado de la orden de compra a Aprobada
-            order.ChangeStatus(PurchaseOrderStatus.Approved);
+            // 5. Actualizar estado de la orden de compra a Recibida
+            order.ChangeStatus(PurchaseOrderStatus.PartiallyReceived);
 
             _receiptRepository.Add(receipt);
             _orderRepository.Update(order);

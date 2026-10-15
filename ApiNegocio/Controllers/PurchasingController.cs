@@ -1,16 +1,21 @@
-﻿using Aplication.Identity.Purchasing.PurchaseOrders.Create;
+﻿using ApiNegocio.Controllers.Common;
+using Aplication.Identity.Purchasing.PurchaseOrders.Create;
 using Aplication.Identity.Purchasing.PurchaseOrders.Delete;
 using Aplication.Identity.Purchasing.PurchaseOrders.GetAll;
 using Aplication.Identity.Purchasing.PurchaseOrders.GetById;
 using Aplication.Identity.Purchasing.PurchaseOrders.Update;
 using Aplication.Identity.Purchasing.PurchaseReceipts.Create;
+using Aplication.Identity.Purchasing.PurchaseReceipts.Delete;
+using Aplication.Identity.Purchasing.PurchaseReceipts.GetAll;
+using Aplication.Identity.Purchasing.PurchaseReceipts.GetById;
 using ErrorOr;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiNegocio.Controllers
 {
-    [Route("Purchasing")]
+    //[Route("Purchasing")]
+    [Route("Compras")]
     public class PurchasingController : ApiController
     {
         private readonly ISender _mediator;
@@ -22,7 +27,8 @@ namespace ApiNegocio.Controllers
 
         // --- PURCHASE ORDERS ---
 
-        [HttpPost("orders")]
+        //[HttpPost("orders")]
+        [HttpGet("Ordenes")]
         public async Task<IActionResult> CreateOrder([FromBody] CreatePurchaseOrderCommand command)
         {
             var result = await _mediator.Send(command);
@@ -31,7 +37,7 @@ namespace ApiNegocio.Controllers
                 errors => Problem(errors));
         }
 
-        [HttpGet("orders/{id:guid}")]
+        [HttpGet("Ordenes/{id:guid}")]
         public async Task<IActionResult> GetOrderById(Guid id)
         {
             var result = await _mediator.Send(new GetPurchaseOrderByIdQuery(id));
@@ -40,7 +46,7 @@ namespace ApiNegocio.Controllers
                 errors => Problem(errors));
         }
 
-        [HttpGet("orders")]
+        [HttpGet("Ordenes")]
         public async Task<IActionResult> GetAllOrders()
         {
             var result = await _mediator.Send(new GetAllPurchaseOrdersQuery());
@@ -49,7 +55,7 @@ namespace ApiNegocio.Controllers
                 errors => Problem(errors));
         }
 
-        [HttpPut("orders/{id:guid}")]
+        [HttpPut("Ordenes/{id:guid}")]
         public async Task<IActionResult> UpdateOrder(Guid id, [FromBody] UpdatePurchaseOrderCommand command)
         {
             if (id != command.Id)
@@ -66,7 +72,7 @@ namespace ApiNegocio.Controllers
                 errors => Problem(errors));
         }
 
-        [HttpDelete("orders/{id:guid}")]
+        [HttpDelete("Ordenes/{id:guid}")]
         public async Task<IActionResult> DeleteOrder(Guid id)
         {
             var result = await _mediator.Send(new DeletePurchaseOrderCommand(id));
@@ -77,12 +83,39 @@ namespace ApiNegocio.Controllers
 
         // --- PURCHASE RECEIPTS ---
 
-        [HttpPost("receipts")]
+        [HttpPost("Recibos")]
         public async Task<IActionResult> CreateReceipt([FromBody] CreatePurchaseReceiptCommand command)
         {
             var result = await _mediator.Send(command);
             return result.Match(
                 receiptId => Ok(new { ReceiptId = receiptId }),
+                errors => Problem(errors));
+        }
+
+        [HttpGet("Recibos/{id:guid}")]
+        public async Task<IActionResult> GetReceiptById(Guid id)
+        {
+            var result = await _mediator.Send(new GetPurchaseReceiptByIdQuery(id));
+            return result.Match(
+                receipt => Ok(receipt),
+                errors => Problem(errors));
+        }
+
+        [HttpGet("Recibos")]
+        public async Task<IActionResult> GetAllReceipts()
+        {
+            var result = await _mediator.Send(new GetAllPurchaseReceiptsQuery());
+            return result.Match(
+                receipts => Ok(receipts),
+                errors => Problem(errors));
+        }
+
+        [HttpDelete("Recibos/{id:guid}")]
+        public async Task<IActionResult> DeleteReceipt(Guid id)
+        {
+            var result = await _mediator.Send(new DeletePurchaseReceiptCommand(id));
+            return result.Match(
+                _ => NoContent(),
                 errors => Problem(errors));
         }
     }

@@ -5,13 +5,12 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Persistence.Configuration.Purchasing
 {
-    public sealed class PurchaseOrderConfiguration
+    public sealed class PurchaseOrderConfiguration : IEntityTypeConfiguration<PurchaseOrder>
     {
         public void Configure(EntityTypeBuilder<PurchaseOrder> builder)
         {
             builder.ToTable("PurchaseOrders");
             builder.HasKey(p => p.Id);
-
             builder.Property(p => p.Id).HasConversion(id => id.Value, id => new PurchaseOrderId(id));
             builder.Property(p => p.CompanyId).HasConversion(id => id.Value, id => new CompanyId(id)).IsRequired();
             builder.Property(p => p.OrderNumber).HasMaxLength(50).IsRequired();

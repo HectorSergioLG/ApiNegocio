@@ -15,24 +15,30 @@ namespace Infrastructure.Persistence.Configuration.Catalogs
             builder.Property(p => p.Id).HasConversion(id => id.Value, id => new ProductId(id));
             builder.Property(p => p.Name).IsRequired().HasMaxLength(150);
             builder.Property(p => p.Description).HasMaxLength(500);
-            builder.Property(p => p.Price).IsRequired();
+            builder.Property(p => p.Price).HasPrecision(18,2).IsRequired();
             builder.Property(p => p.Stock).IsRequired();
             builder.Property(p => p.IsActive).IsRequired();
 
-            // Configuración de la relación con Brand
-            builder.HasOne<Brand>()
-                .WithMany()
-                .HasForeignKey(p=>p.Id)
-               .OnDelete(DeleteBehavior.Restrict);
+            // Configuración de claves foráneas
+            builder.Property(p => p.BrandId)
+                .HasConversion(id => id.Value, id => new BrandId(id))
+                .IsRequired();
 
-            builder.HasOne<UnitMeasure>()
+            builder.Property(p => p.UnitMeasureId)
+                .HasConversion(id => id.Value, id => new UnitMeasureId(id))
+                .IsRequired();
+
+            // Configuración de la relación con Brand
+            builder.HasOne(p => p.Brand)
                 .WithMany()
-                .HasForeignKey(p => p.Id)
+                .HasForeignKey(p => p.BrandId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-
-
-
+            // Configuración de la relación con UnitMeasure
+            builder.HasOne(p => p.UnitMeasure)
+                .WithMany()
+                .HasForeignKey(p => p.UnitMeasureId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

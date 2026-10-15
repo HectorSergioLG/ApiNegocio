@@ -74,7 +74,20 @@ namespace Infrastructure.Persistence
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
-            
+
+            // Ignorar Value Objects tipo ID para que no sean tratados como entidades
+            modelBuilder.Ignore<CustomerId>();
+            modelBuilder.Ignore<CompanyId>();
+            modelBuilder.Ignore<BrandId>();
+            modelBuilder.Ignore<ProductId>();
+            modelBuilder.Ignore<UnitMeasureId>();
+            modelBuilder.Ignore<RoleId>();
+            modelBuilder.Ignore<UserId>();
+            modelBuilder.Ignore<PermissionId>();
+            modelBuilder.Ignore<PurchaseOrderId>();
+            modelBuilder.Ignore<PurchaseOrderDetailId>();
+            modelBuilder.Ignore<PurchaseReceiptId>();
+            modelBuilder.Ignore<PurchaseReceiptDetailId>();
         }
     }
 }
