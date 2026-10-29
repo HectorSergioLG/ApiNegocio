@@ -18,7 +18,7 @@ namespace Aplication.Identity.Catalogos.Products.Products.GetById
             {
                 return Error.NotFound("Product.NoFound", "El producto no fue encontrado.");
             }
-            return new ProductResponse(product.Id.Value, product.Name,product.UnitMeasure.Id.Value, product.Brand.Id.Value, product.Description, product.Price, product.Stock, product.IsActive);
+            return new ProductResponse(  product.Id.Value, product.Sku, product.Name, product.Description, product.UnitMeasureId.Value, product.BrandId.Value, product.Price, product.IsActive);
         }
     }
 }

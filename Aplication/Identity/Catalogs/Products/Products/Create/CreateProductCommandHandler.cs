@@ -1,4 +1,6 @@
-﻿using Domain.Entities.Catalogs.Products.Products;
+﻿using Domain.Entities.Catalogs.Products.Brands;
+using Domain.Entities.Catalogs.Products.Products;
+using Domain.Entities.Catalogs.Products.UnitsMesures;
 using Domain.Primitives;
 using ErrorOr;
 using MediatR;
@@ -17,35 +19,25 @@ namespace Aplication.Identity.Catalogos.Products.Products.Create
 
         public async Task<ErrorOr<Unit>> Handle(CreateProductCommand request, CancellationToken cancellationToken)
         {
-            if (request.Price <= 0)
+            if (await _productRepository.ExistsSku(request.Sku))
             {
-                return Error.Validation("Price.Invalid", "El precio del producto debe ser mayor a cero");
-            }
-            if (request.Stock < 0)
-            {
-                return Error.Validation("Stock.Invalid", "El stock del producto no puede ser negativo");
+                return Error.Conflict("Product.DuplicateSku", $"Ya existe un producto registrado con el SKU '{request.Sku}'.");
             }
 
-            /*if (UnitsMeasures.Exist()) { 
-                
-            }
-            if (Brands.Exist())
-            {
-            }*/
-
+            var productId = new ProductId(Guid.NewGuid());
             var product = new Product(
-                new ProductId(Guid.NewGuid()),
+                productId,
+                request.Sku,
                 request.Name,
-                new(),
-                new(),
                 request.Description,
+                new UnitMeasureId(request.UnitMeasureId),
+                new BrandId(request.BrandId),
                 request.Price,
-                request.Stock,
-                true
-            );
+                isActive: true);
 
             _productRepository.Add(product);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
+           
             return Unit.Value;
         }
     }

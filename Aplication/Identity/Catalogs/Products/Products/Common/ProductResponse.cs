@@ -2,12 +2,12 @@
 {
     public record ProductResponse(
         Guid Id,
+        string Sku,
         string Name,
-        Guid IdUnitMeasure,
-        Guid idBrand,
         string Description,
+        Guid UnitMeasureId,
+        Guid BrandId,
         decimal Price,
-        int Stock,
         bool IsActive
     );
 }

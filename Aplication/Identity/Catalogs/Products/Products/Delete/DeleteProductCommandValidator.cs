@@ -9,7 +9,7 @@ namespace Aplication.Identity.Catalogos.Products.Products.Delete
     public class DeleteProductCommandValidator : AbstractValidator<DeleteProductCommand>
     {
         public DeleteProductCommandValidator() {
-            RuleFor(x => x.Id).NotEmpty();
+            RuleFor(x => x.Id).NotEmpty().WithMessage("El identificador del producto es requerido.");
         }
     }
 }

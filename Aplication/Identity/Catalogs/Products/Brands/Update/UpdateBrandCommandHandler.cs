@@ -22,6 +22,10 @@ namespace Aplication.Identity.Catalogos.Products.Brands.Update
             {
                 return Error.NotFound("Marca.NoFound", "La marca no fue encontrada.");
             }
+            if (await _brandRepository.ExistsName(request.Name))
+            {
+                return Error.Conflict("Brand.DuplicateName", $"El nombre '{request.Name}' ya está asignado a otra marca.");
+            }
 
             Brand brand = Brand.UpdateBrand(
                 request.Id,

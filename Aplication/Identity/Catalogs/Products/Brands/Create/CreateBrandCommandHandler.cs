@@ -18,11 +18,16 @@ namespace Aplication.Identity.Catalogos.Products.Brands.Create
         }
         public async Task<ErrorOr<Unit>> Handle(CreateBrandCommand request, CancellationToken cancellationToken)
         {
+            if (await _brandRepository.ExistsName(request.Name))
+            {
+                return Error.Conflict("Brand.DuplicateName", $"Ya existe una marca con el nombre '{request.Name}'.");
+            }
+
             var brand = new Brand(
                 new BrandId(Guid.NewGuid()),
                 request.Name,
                 request.WebSite,
-                request.IsActive
+                true
             );
 
             _brandRepository.Add(brand);

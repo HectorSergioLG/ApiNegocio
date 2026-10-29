@@ -15,6 +15,7 @@ namespace Infrastructure.Persistence.Repositories.Catalogs
         public void Delete(Brand brand) => _context.Brands.Remove(brand);
 
         public Task<bool> Exists(BrandId id) => _context.Brands.AnyAsync(c => c.Id == id);
+        public Task<bool> ExistsName(string name) => _context.Brands.AnyAsync(c => c.Name == name);
 
         public Task<List<Brand>> GetAll() => _context.Brands.ToListAsync();
 

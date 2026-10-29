@@ -16,10 +16,10 @@ namespace Domain.Entities.Catalogs.Products.UnitsMesures
             Description = description;
         }
 
-        public UnitMeasureId Id { get; private set; }
-        public string Name { get; private set; } = string.Empty;
-        public string Abbreviation { get; private set; } = string.Empty;
-        public string Description { get; private set; }
+        public UnitMeasureId? Id { get; private set; }
+        public string? Name { get; private set; } = string.Empty;
+        public string? Abbreviation { get; private set; } = string.Empty;
+        public string? Description { get; private set; }
 
         public static UnitMeasure UpdateUnitMeasure(Guid id,string name, string abbreviation, string description) 
         {

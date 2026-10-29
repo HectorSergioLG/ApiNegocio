@@ -1,4 +1,6 @@
-﻿using Domain.Entities.Catalogs.Products.Products;
+﻿using Domain.Entities.Catalogs.Products.Brands;
+using Domain.Entities.Catalogs.Products.Products;
+using Domain.Entities.Catalogs.Products.UnitsMesures;
 using Domain.Primitives;
 using ErrorOr;
 using MediatR;
@@ -18,22 +20,32 @@ namespace Aplication.Identity.Catalogos.Products.Products.Update
 
         public async Task<ErrorOr<Unit>> Handle(UpdateProductCommand request, CancellationToken cancellationToken)
         {
-            if (!await _productRepository.Exists(new ProductId(request.Id)))
+            var product = await _productRepository.GetById(new ProductId(request.Id));
+
+            if (product is null)
             {
-                return Error.NotFound("Producto.NoFound", "El producto no fue encontrado.");
+                return Error.NotFound("Product.NotFound", $"El producto con ID '{request.Id}' no fue encontrado.");
             }
-            Product product = Product.UpdateProduct(
-                request.Id,
+
+            if (!string.Equals(product.Sku, request.Sku, StringComparison.OrdinalIgnoreCase))
+            {
+                if (await _productRepository.ExistsSku(request.Sku))
+                {
+                    return Error.Conflict("Product.DuplicateSku", $"El SKU '{request.Sku}' ya está asignado a otro producto.");
+                }
+            }
+            
+            product.Update(
+                request.Sku,
                 request.Name,
-                new(),//request.IdUnitMeasure,
-                new(),//request.idBrand,
                 request.Description,
-                request.Price,
-                request.Stock,
-                request.IsActive
-            );
+                new UnitMeasureId(request.UnitMeasureId),
+                new BrandId(request.BrandId),
+                request.Price);
+
             _productRepository.Update(product);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
+
             return Unit.Value;
         }
     }

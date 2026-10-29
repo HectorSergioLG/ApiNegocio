@@ -7,41 +7,48 @@ namespace Domain.Entities.Catalogs.Products.Products
     public class Product : AggregateRoot
     {
         public Product() { }
-
-        public Product(ProductId productId, string name, UnitMeasure unitMeasure, Brand brand, string description, decimal price, int stock, bool isActive)
-        {
-            Id = productId;
-            Name = name;
-            UnitMeasure = unitMeasure;
-            UnitMeasureId = unitMeasure.Id;
-            Brand = brand;
-            BrandId = brand.Id;
-            Description = description;
-            Price = price;
-            Stock = stock;
-            IsActive = isActive;
-        }
-
-        public ProductId Id { get; private set; }
+       
+        public ProductId? Id { get; private set; }
+        public string Sku { get; private set; } = string.Empty;
         public string Name { get; private set; } = string.Empty;
+        public string? Description { get; private set; }
 
         // Propiedades de clave foránea
-        public UnitMeasureId UnitMeasureId { get; private set; }
-        public BrandId BrandId { get; private set; }
+        public UnitMeasureId? UnitMeasureId { get; private set; }
+        public BrandId? BrandId { get; private set; }
 
         // Propiedades de navegación
         public UnitMeasure UnitMeasure { get; private set; } 
         public Brand Brand { get; private set; }
 
-        public string Description { get; private set; }
+       
         public decimal Price { get; private set; }
-        public int Stock { get; private set; }
+       
         public bool IsActive { get; private set; }
 
-        public static Product UpdateProduct(Guid id, string name, UnitMeasure unitMeasure, Brand brand, string description, decimal price, int stock, bool isActive)
+        public Product(ProductId id, string sku, string name, string description, UnitMeasureId unitMeasureId, BrandId brandId, /*UnitMeasure unitMeasure, Brand brand,*/ decimal price, bool isActive)
         {
-            return new Product(new ProductId(id),name,unitMeasure, brand, description, price, stock, isActive );
+            Id = id;
+            Sku = sku;
+            Name = name;
+            Description = description;
+            UnitMeasureId = unitMeasureId;
+            BrandId = brandId;
+            /*UnitMeasure = unitMeasure;
+            Brand = brand;*/
+            Price = price;
+            IsActive = isActive;
         }
+
+        public void Update(string sku, string name, string description, UnitMeasureId unitMeasureId, BrandId brandId, decimal price)
+        {
+            Sku = sku;
+            Name = name;
+            Description = description;
+            UnitMeasureId = unitMeasureId;
+            BrandId = brandId;
+            Price = price;
+        }   
 
         public void Disable()
         {

@@ -10,20 +10,20 @@ namespace Aplication.Identity.Catalogos.Products.Products.GetAll
         private readonly IProductRepository _productRepository;
         public GetAllProductQueryHandler(IProductRepository productRepository)
         {
-            _productRepository = productRepository;
+            _productRepository = productRepository ?? throw new ArgumentNullException(nameof(productRepository));
         }
         public async Task<ErrorOr<IReadOnlyList<ProductResponse>>> Handle(GetAllProductsQuery request, CancellationToken cancellationToken)
         {
             IReadOnlyList<Product> Products = await _productRepository.GetAll();
-            return Products.Select(product => new ProductResponse(
-               product.Id.Value,
-               product.Name,
-               product.UnitMeasure.Id.Value,
-               product.Brand.Id.Value,
-               product.Description,
-               product.Price,
-               product.Stock,
-               product.IsActive
+            return Products.Select(p => new ProductResponse(
+                p.Id.Value,
+                p.Sku,
+                p.Name,
+                p.Description,
+                p.UnitMeasureId.Value,
+                p.BrandId.Value,
+                p.Price,
+                p.IsActive
              )).ToList();
         }
     }

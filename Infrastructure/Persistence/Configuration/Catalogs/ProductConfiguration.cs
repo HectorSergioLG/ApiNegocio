@@ -16,7 +16,7 @@ namespace Infrastructure.Persistence.Configuration.Catalogs
             builder.Property(p => p.Name).IsRequired().HasMaxLength(150);
             builder.Property(p => p.Description).HasMaxLength(500);
             builder.Property(p => p.Price).HasPrecision(18,2).IsRequired();
-            builder.Property(p => p.Stock).IsRequired();
+            builder.Property(p => p.Sku).IsRequired();
             builder.Property(p => p.IsActive).IsRequired();
 
             // Configuración de claves foráneas

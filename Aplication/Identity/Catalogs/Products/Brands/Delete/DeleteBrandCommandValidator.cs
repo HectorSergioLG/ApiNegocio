@@ -6,7 +6,7 @@ namespace Aplication.Identity.Catalogos.Products.Brands.Delete
     {
         public DeleteBrandCommandValidator()
         {
-            RuleFor(x => x.Id).NotEmpty();
+            RuleFor(x => x.Id).NotEmpty().WithMessage("El identificador de la marca es requerido.");
         }
     }
 }

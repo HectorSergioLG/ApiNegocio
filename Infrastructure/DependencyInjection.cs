@@ -60,6 +60,7 @@ namespace Infrastructure
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IPurchaseOrderRepository, PurchaseOrderRepository>();
             services.AddScoped<IPurchaseReceiptRepository, PurchaseReceiptRepository>();
+
             return services;
         }
     }

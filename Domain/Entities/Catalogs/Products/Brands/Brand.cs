@@ -34,8 +34,8 @@ namespace Domain.Entities.Catalogs.Products.Brands
             IsActive = true;
         }
 
-        public BrandId Id { get; private set; }
-        public string Name { get; private set; }
+        public BrandId? Id { get; private set; }
+        public string? Name { get; private set; }
         public string WebSite { get; private set; } = string.Empty;
         public bool IsActive { get; private set; } = true;
     }

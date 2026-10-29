@@ -10,7 +10,7 @@ namespace Infrastructure.Persistence.Repositories.Catalogs
 
         public void Delete(Product product) => _context.Products.Remove(product);
 
-        public Task<bool> Exists(ProductId id) => _context.Products.AnyAsync(p => p.Id == id);
+        public Task<bool> ExistsSku(string sku) => _context.Products.AnyAsync(p => p.Sku == sku);
 
         public Task<List<Product>> GetAll() => _context.Products.ToListAsync();
 

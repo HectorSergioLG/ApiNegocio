@@ -8,6 +8,6 @@ namespace Aplication.Identity.Catalogos.Products.Brands.Create
 {
     public record CreateBrandCommand(
         string Name,
-        string WebSite,
-        bool IsActive) : IRequest<ErrorOr<Unit>>;
+        string WebSite
+        ) : IRequest<ErrorOr<Unit>>;
 }

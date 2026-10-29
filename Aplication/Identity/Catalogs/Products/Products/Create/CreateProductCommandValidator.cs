@@ -6,10 +6,22 @@ namespace Aplication.Identity.Catalogos.Products.Products.Create
     {
         public CreateProductCommandValidator()
         {
-            RuleFor(x => x.Name).NotEmpty().MaximumLength(150);
-            RuleFor(x => x.Description).MaximumLength(250);
-            RuleFor(x => x.Price).GreaterThan(0);
-            RuleFor(x => x.Stock).GreaterThanOrEqualTo(0);
+            RuleFor(x => x.Sku)
+             .NotEmpty().WithMessage("El SKU es obligatorio.")
+             .MaximumLength(50).WithMessage("El SKU no debe exceder 50 caracteres.");
+
+            RuleFor(x => x.Name)
+                .NotEmpty().WithMessage("El nombre del producto es obligatorio.")
+                .MaximumLength(150).WithMessage("El nombre no debe exceder 150 caracteres.");
+
+            RuleFor(x => x.UnitMeasureId)
+                .NotEmpty().WithMessage("La unidad de medida es obligatoria.");
+
+            RuleFor(x => x.BrandId)
+                .NotEmpty().WithMessage("La marca es obligatoria.");
+
+            RuleFor(x => x.Price)
+                .GreaterThanOrEqualTo(0).WithMessage("El precio debe ser mayor o igual a 0.");
         }
     }
 }

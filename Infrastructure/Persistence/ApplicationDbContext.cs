@@ -4,6 +4,12 @@ using Domain.Entities.Catalogs.Customer;
 using Domain.Entities.Catalogs.Products.Brands;
 using Domain.Entities.Catalogs.Products.Products;
 using Domain.Entities.Catalogs.Products.UnitsMesures;
+using Domain.Entities.Inventory.InventoryAdjustments;
+using Domain.Entities.Inventory.InventoryMovements;
+using Domain.Entities.Inventory.ProductBatches;
+using Domain.Entities.Inventory.ProductSerials;
+using Domain.Entities.Inventory.ProductStocks;
+using Domain.Entities.Inventory.WarehouseLocations;
 using Domain.Entities.Purchasing.PurchaseOrders;
 using Domain.Entities.Purchasing.PurchaseReceipts;
 using Domain.Entities.Security.Permissions;
@@ -43,6 +49,13 @@ namespace Infrastructure.Persistence
         public DbSet<PurchaseOrderDetail> PurchaseOrderDetails { get; set; }
         public DbSet<PurchaseReceipt> PurchaseReceipts { get; set; }
         public DbSet<PurchaseReceiptDetail> PurchaseReceiptDetails { get; set; }
+
+        public DbSet<WarehouseLocation> WarehouseLocations { get; set; }
+        public DbSet<ProductBatch> ProductBatches { get; set; }
+        public DbSet<ProductSerial> ProductSerials { get; set; }
+        public DbSet<InventoryAdjustment> InventoryAdjustments { get; set; }
+        public DbSet<ProductStock> ProductStocks { get; set; }
+        public DbSet<InventoryMovement> InventoryMovements { get; set; }
 
 
         /// <summary>

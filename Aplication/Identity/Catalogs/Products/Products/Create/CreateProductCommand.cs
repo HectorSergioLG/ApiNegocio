@@ -4,11 +4,11 @@ using MediatR;
 namespace Aplication.Identity.Catalogos.Products.Products.Create
 {
     public record CreateProductCommand(
+        string Sku,
         string Name,
-        string IdBrand,
-        string IdUnitMeasure,
         string Description,
-        decimal Price,
-        int Stock
+        Guid UnitMeasureId,
+        Guid BrandId,
+        decimal Price
     ) : IRequest<ErrorOr<Unit>>;
 }

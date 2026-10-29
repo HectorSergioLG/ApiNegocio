@@ -44,9 +44,7 @@ namespace ApiNegocio.Controllers
         public async Task<IActionResult> Create([FromBody] CreateCustomerCommand command)
         {
             var result = await _mediator.Send(command);
-            return result.Match(
-                clienteId =>Ok(clienteId),
-                errors => Problem(errors)
+            return result.Match( clienteId =>Ok(clienteId), errors => Problem(errors)
             );
         }
 

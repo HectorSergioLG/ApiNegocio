@@ -10,6 +10,7 @@ namespace Domain.Entities.Catalogs.Products.Brands
         Task<List<Brand>> GetAll();
         Task<Brand?> GetById(BrandId id);
         Task<bool> Exists(BrandId id);
+        Task<bool> ExistsName(string name);
         void Add(Brand brand);
         void Delete(Brand brand);
         void Update(Brand brand);

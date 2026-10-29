@@ -12,9 +12,9 @@ namespace Domain.Entities.Purchasing.PurchaseOrders
     {
         private readonly List<PurchaseOrderDetail> _purchaseOrderDetails = new List<PurchaseOrderDetail>();
 
-        public PurchaseOrderId Id { get; private set; }
-        public CompanyId CompanyId { get; private set; }
-        public string OrderNumber { get; private set; }
+        public PurchaseOrderId? Id { get; private set; }
+        public CompanyId? CompanyId { get; private set; }
+        public string? OrderNumber { get; private set; }
         public DateTime OrderDate { get; private set; }
         public PurchaseOrderStatus Status { get; private set; }
         public decimal TotalAmount => _purchaseOrderDetails.Sum(d => d.SubTotal);
@@ -36,10 +36,10 @@ namespace Domain.Entities.Purchasing.PurchaseOrders
             _purchaseOrderDetails.Add(detail);
         }
 
-        public void AddDetail(ProductId productId, decimal quantity, decimal unitPrice)
+        public void AddDetail(PurchaseOrderId purchaseOrderId, ProductId productId, decimal quantity, decimal unitPrice)
         {
             var detail = new PurchaseOrderDetail( 
-                Id,
+                purchaseOrderId,
                 productId, 
                 quantity, 
                 unitPrice);
@@ -65,7 +65,7 @@ namespace Domain.Entities.Purchasing.PurchaseOrders
             _purchaseOrderDetails.Clear();
             foreach (var item in items)
             {
-                AddDetail(item.ProductId, item.Quantity, item.UnitPrice);
+                AddDetail(Id, item.ProductId, item.Quantity, item.UnitPrice);
             }
         }
 
